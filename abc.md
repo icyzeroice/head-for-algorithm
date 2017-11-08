@@ -1,11 +1,12 @@
-# ABC (Aritfitial Bee Conoly, 人工蜂群)
+# ABC \(Aritfitial Bee Conoly, 人工蜂群\)
 
 ### 背景
+
 人工蜂群算法是一种群智能算法，Karaboga 于 2005 年提出。
 
 ### 原理
 
-[标准 ABC 算法][1]模拟实际蜜蜂的采蜜机制，主要由以下几部分组成：
+标准 ABC 算法模拟实际蜜蜂的采蜜机制，主要由以下几部分组成 [^1]：
 
 ```sequence
 Title: 人工蜂群要素
@@ -22,12 +23,11 @@ Title: 人工蜂群要素
   放弃 (abandon) 蜜源 ->>
 
 特点：
-  角色转换 ->> 
+  角色转换 ->>
 ```
 
-
 |  |  |
-|--|--|
+| --- | --- |
 | $$D$$ | 当前问题维度 |
 | $$t$$ | 指当前搜索迭代次数 |
 | $$i$$ | $$i=1,2,...,NP$$，即此时蜜源总数共 $$NP$$ |
@@ -37,16 +37,14 @@ Title: 人工蜂群要素
 | $$L_d$$ | 蜜源空间上限 |
 |  |  |
 
-
 1. 蜜源 $$i$$ 的初始位置为随机生成：
 
 $$ x_{id} = L_d + rand(0,1)(U_d - L_d) \qquad (x_{id}^t \in (U_d, L_d) $$
 
-2. 搜索开始，Leader 在蜜源 $$x_{id}$$ 附近搜索产生一个新的蜜源：
+1. 搜索开始，Leader 在蜜源 $$x_{id}$$ 附近搜索产生一个新的蜜源：
 
 $$v_{id} = x_{id} + rand(-1, 1) (x_{id} - x_{jd})$$
 
 蜂巢 (beehive)
 
-
-[1]: https://www.researchgate.net/publication/280232074_rengongfengqunsuanfayanjiuzongshu_Artificial_bee_colony_algorithm_A_survey "秦全德, 程适, 李丽, 等. 人工蜂群算法研究综述[J]. 智能系统学报, 2014, 9(2) : 127-135."
+[^1]: https://www.researchgate.net/publication/280232074_rengongfengqunsuanfayanjiuzongshu_Artificial_bee_colony_algorithm_A_survey "秦全德, 程适, 李丽, 等. 人工蜂群算法研究综述[J]. 智能系统学报, 2014, 9\(2\) : 127-135."
