@@ -1,4 +1,4 @@
-# ABC \(Aritfitial Bee Conoly, 人工蜂群\)
+# ABC (Aritfitial Bee Conoly, 人工蜂群)
 
 ### 背景
 
@@ -37,13 +37,15 @@ Title: 人工蜂群要素
 | $$L_d$$ | 蜜源空间上限 |
 |  |  |
 
-1. 蜜源 $$i$$ 的初始位置为随机生成：
+1 . 蜜源 $$i$$ 的初始位置为随机生成：
 
 $$ x_{id} = L_d + rand(0,1)(U_d - L_d) \qquad (x_{id}^t \in (U_d, L_d) $$
 
-1. 搜索开始，Leader 在蜜源 $$x_{id}$$ 附近搜索产生一个新的蜜源：
+2 . 搜索开始，Leader 在蜜源 $$x_{id}$$ 附近搜索产生一个新的蜜源：
 
 $$v_{id} = x_{id} + rand(-1, 1) (x_{id} - x_{jd})$$
+
+3 . 
 
 蜂巢 (beehive)
 
