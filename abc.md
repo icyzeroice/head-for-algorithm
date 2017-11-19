@@ -74,6 +74,18 @@ Title: 人工蜂群要素
     \end{matrix}\right.
   $$
 
+  PS: 比如，在 ABC 算法最小化的优化问题中，解的适应度评价依据为：
+
+  $$
+  fit_i = \left\{\begin{matrix}
+    1 / (1+f_i) & ,f_i > 0 \\
+    1 + abs(f_i) & ,otherwise
+  \end{matrix}\right.
+  $$
+
+[>>> TODO ]: 弄明白这个使用度评价为什么要这么算?
+
+
 5. 就这样进行以上的步骤，在一定次数的循环后，我们便有可能找到优化的解
 
 
