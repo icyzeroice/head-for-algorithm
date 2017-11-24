@@ -3,7 +3,8 @@
 * [introduction](./README.md)
 
 * [基础算法](./basic.md)
-  * [排序](./sort.md)
+  * [比较排序](./comparison-sort.md)
+  * [多叉树]()
 
 * [元启发式算法](./mha.md)
   * [遗传算法](./ga.md)

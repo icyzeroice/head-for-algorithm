@@ -2,6 +2,12 @@
   "title": "Head for Algorithm",
   "author": "Ice Zero",
   "plugins": [
+    "3-ba",
     "katex"
-  ]
+  ],
+  "pluginsConfig": {
+    "3-ba": {
+      "token": "a5ac8e552a9e73655829993d63295a76"
+    }
+  }
 }
