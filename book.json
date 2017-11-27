@@ -3,7 +3,8 @@
   "author": "Ice Zero",
   "plugins": [
     "3-ba",
-    "katex"
+    "katex",
+    "mermaid-gb3"
   ],
   "pluginsConfig": {
     "3-ba": {

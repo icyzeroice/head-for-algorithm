@@ -1,0 +1,13 @@
+#### vim / emacs
+*~
+
+#### gitbook
+*.pdf
+*.html
+*.mobi
+
+#### vscode
+.vscode/
+
+#### JetBrains
+.idea/
