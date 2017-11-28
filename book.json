@@ -1,4 +1,5 @@
 {
+  "root": "./docs",
   "title": "Head for Algorithm",
   "author": "Ice Zero",
   "plugins": [
