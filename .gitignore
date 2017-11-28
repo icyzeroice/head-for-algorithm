@@ -2,18 +2,13 @@
 .grunt
 
 #### GitBook
-# _book
+_book
 *.epub
 *.mobi
 *.pdf
 
 #### vim / emacs
 *~
-
-#### gitbook
-*.pdf
-*.html
-*.mobi
 
 #### vscode
 .vscode/
