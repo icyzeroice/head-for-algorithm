@@ -6,11 +6,11 @@
   * [比较排序](./basic/comparison-sort.md)
   * [多叉树]()
 
-* [元启发式算法](./mha.md)
-  * [遗传算法](./ga.md)
-  * [蚁群](./aco.md)
-  * [粒子群优化](./pso.md)
-  * [人工蜂群](./abc.md)
+* [元启发式算法](./meta-heuristic/mha.md)
+  * [遗传算法](./meta-heuristic/ga.md)
+  * [蚁群](./meta-heuristic/aco.md)
+  * [粒子群优化](./meta-heuristic/pso.md)
+  * [人工蜂群](./meta-heuristic/abc.md)
   * [其他群体智能算法]()
 
 * [随机算法]()
