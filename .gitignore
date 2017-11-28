@@ -1,3 +1,12 @@
+#### Node
+.grunt
+
+#### GitBook
+# _book
+*.epub
+*.mobi
+*.pdf
+
 #### vim / emacs
 *~
 

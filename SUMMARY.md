@@ -2,8 +2,8 @@
 
 * [introduction](./README.md)
 
-* [基础算法](./basic.md)
-  * [比较排序](./comparison-sort.md)
+* [基础算法](./basic/basic.md)
+  * [比较排序](./basic/comparison-sort.md)
   * [多叉树]()
 
 * [元启发式算法](./mha.md)
