@@ -4,6 +4,9 @@
 
 * [基础算法](./basic/basic.md)
   * [比较排序](./basic/comparison-sort.md)
+    * [冒泡排序](./basic/bubble-sort.md)
+    * [插入排序](./basic/insert-sort.md)
+    * [快速排序](./basic/quick-sort.md)
   * [多叉树]()
 
 * [元启发式算法](./meta-heuristic/mha.md)
