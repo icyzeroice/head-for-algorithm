@@ -2,18 +2,18 @@
 
 ### 原理简述
 
-插入排序[^1] 先从数组 0 位开始，将其当做已排有序序列，然后将其之后剩余项 $$B_n$$ 一个一个地与已排有序序列 $$A_n$$ 中从后往前的每一项挨个比较（根据不同的语言特性，可能具体实现会有不同，如 C 语言等，比较发现 $$A_n$$ 比此剩余项 $$B_n$$ 大，就可以提前将 $$A_n$$ 往后移一格，较为高效），如果比较到某一有序项 $$A_n$$ 小于等于此剩余项，此剩余项 $$B_n$$ 就移到那个 $$A_n$$ 之后
+插入排序[^1] 先从数组 0 位开始，将其当做已排有序序列，然后将其之后剩余项 $${B_n}$$ 一个一个地与已排有序序列 $${A_n}$$ 中从后往前的每一项挨个比较（根据不同的语言特性，可能具体实现会有不同，如 C 语言等，比较发现 $$A_n$$ 比此剩余项 $$B_n$$ 大，就可以提前将 $$A_n$$ 往后移一格，较为高效），如果比较到某一有序项 $$A_n$$ 小于等于此剩余项，此剩余项 $$B_n$$ 就移到那个 $$A_n$$ 之后
 
 ```
   1    3    2
   ^----^    ^  
-  已排 An   待比较 Bn
+  已排 {An}   待比较 Bn
 ```
 2 先与 3 比较（或者先与 1 比较），发现比 3 小，就接着往前与 1 比较，发现比 2 大，于是便插到 1 之后
 ```
   1    2    3
   ^---------^
-   已排的新 An
+   已排的新 {An}
 ```
 
 ### 复杂度
@@ -35,8 +35,10 @@
 function insertSort(_arrayList) {
   for (let unorderedIndex = 1; unorderedIndex < _arrayList.length; unorderedIndex++) {
     for (let orderedIndex = 0; orderedIndex < unorderedIndex ; orderedIndex++) {
-      // > : stable
-      // >=  : unstable
+
+      // 对下一行 if 代码：
+      // > : 这里如果使用 > 进行比较，则是 稳定排序
+      // >=  : 如果使用 >= 进行比较，则已排序和未排序序列在相等时也会进行交换，即变成 不稳定排序
       if (_arrayList[orderedIndex] > _arrayList[unorderedIndex]) {
         _arrayList.splice(orderedIndex, 0, _arrayList[unorderedIndex]);
         _arrayList.splice(unorderedIndex + 1, 1);
@@ -52,8 +54,10 @@ function insertSort(_arrayList) {
 function insertSortReverse(_arrayList) {
   for (let unorderedIndex = 1; unorderedIndex < _arrayList.length; unorderedIndex++) {
     for (let orderedIndex = unorderedIndex - 1; orderedIndex >= 0 ; orderedIndex--) {
-      // < : stable
-      // <=  : unstable
+      
+      // 同上
+      // < : 稳定排序
+      // <=  : 不稳定排序
       if (_arrayList[orderedIndex] < _arrayList[unorderedIndex]) {
         _arrayList.splice(orderedIndex, 0, _arrayList[unorderedIndex]);
         _arrayList.splice(unorderedIndex + 1, 1);
