@@ -87,9 +87,9 @@ Array.prototype.BubbleSort = function (isReverse = false) {
 ```
 
 ```js
-// test bubble sorting
-console.log([23, 3, 7, 1, 2, 5, ].BubbleSort()); // [ 1, 2, 3, 5, 7, 23 ]
-console.log([23, 3, 4, 1, 2].BubbleSort(true));  // [ 23, 4, 3, 2, 1 ]
+// test under node v8.9.4, Core i7-6700
+console.log([23, 3, 7, 1, 2, 5, ].BubbleSort());        // 0.485ms
+console.log([23, 3, 4, 1, 2].BubbleSort(true));         // 0.082ms
 ```
 
 ### Reference

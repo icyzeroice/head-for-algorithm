@@ -9,7 +9,7 @@
   ^----^    ^  
   已排 An   待比较 Bn
 ```
-2 先与 3 比较，发现比 3 小，就接着往前与 1 比较，发现比 2 大，于是便插到 1 之后
+2 先与 3 比较（或者先与 1 比较），发现比 3 小，就接着往前与 1 比较，发现比 2 大，于是便插到 1 之后
 ```
   1    2    3
   ^---------^
@@ -30,7 +30,62 @@
 
 ### JavaScript 示例代码
 
+从小到大排列这里我们使用从前往后比较。
+```js
+function insertSort(_arrayList) {
+  for (let unorderedIndex = 1; unorderedIndex < _arrayList.length; unorderedIndex++) {
+    for (let orderedIndex = 0; orderedIndex < unorderedIndex ; orderedIndex++) {
+      // > : stable
+      // >=  : unstable
+      if (_arrayList[orderedIndex] > _arrayList[unorderedIndex]) {
+        _arrayList.splice(orderedIndex, 0, _arrayList[unorderedIndex]);
+        _arrayList.splice(unorderedIndex + 1, 1);
+      }
+    }
+  }
 
+  return _arrayList;
+}
+```
+从大到小排列我们这里采用从后往前比较。
+```js
+function insertSortReverse(_arrayList) {
+  for (let unorderedIndex = 1; unorderedIndex < _arrayList.length; unorderedIndex++) {
+    for (let orderedIndex = unorderedIndex - 1; orderedIndex >= 0 ; orderedIndex--) {
+      // < : stable
+      // <=  : unstable
+      if (_arrayList[orderedIndex] < _arrayList[unorderedIndex]) {
+        _arrayList.splice(orderedIndex, 0, _arrayList[unorderedIndex]);
+        _arrayList.splice(unorderedIndex + 1, 1);
+      }
+    }
+  }
+
+  return _arrayList;
+}
+```
+
+```js
+Array.prototype.InsertSort = function (isReverse = false) {
+  console.time('insert sort');
+  let _arrayList = this;
+
+  if (isReverse) {
+    insertSortReverse(this);
+  } else {
+    insertSort(this);
+  }
+
+  console.timeEnd('insert sort');
+  return _arrayList;
+}
+```
+
+```js
+// test under node v8.9.4, Core i7-6700
+console.log([23, 3, 7, 1, 2, 5].InsertSort());        // about 0.104ms
+console.log([23, 3, 4, 1, 2, 5].InsertSort(true));    // about 0.071ms
+```
 
 ### Reference
 [^1]: https://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F "插入排序"
