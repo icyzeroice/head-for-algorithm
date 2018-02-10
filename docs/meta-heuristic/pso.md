@@ -17,4 +17,4 @@ $$
 $$
 part 表示某次迭代局部最优，global 表示某次迭代全局最优
 
-简易示例：[PSO-demo](https://github.com/icyzeroice/octave-draft/blob/master/icy-pso/icyPSO.m)
+简易示例：[PSO-demo](https://gitee.com/icyzeroice/octave-draft/blob/master/icy-pso/icyPSO.m)

@@ -5,15 +5,15 @@
 插入排序[^1] 先从数组 0 位开始，将其当做已排有序序列，然后将其之后剩余项 $${B_n}$$ 一个一个地与已排有序序列 $${A_n}$$ 中从后往前的每一项挨个比较（根据不同的语言特性，可能具体实现会有不同，如 C 语言等，比较发现 $$A_n$$ 比此剩余项 $$B_n$$ 大，就可以提前将 $$A_n$$ 往后移一格，较为高效），如果比较到某一有序项 $$A_n$$ 小于等于此剩余项，此剩余项 $$B_n$$ 就移到那个 $$A_n$$ 之后
 
 ```
-  1    3    2
-  ^----^    ^  
+  1     3     2     0
+  ^-----^     ^     ^
   已排 {An}   待比较 Bn
 ```
 2 先与 3 比较（或者先与 1 比较），发现比 3 小，就接着往前与 1 比较，发现比 2 大，于是便插到 1 之后
 ```
-  1    2    3
-  ^---------^
-   已排的新 {An}
+  1     2     3     0
+  ^-----------^     ^
+   已排的新 {An}     待比较 Bn
 ```
 
 ### 复杂度
@@ -30,7 +30,7 @@
 
 ### JavaScript 示例代码
 
-从小到大排列这里我们使用从前往后比较。
+从小到大排列，这里我们使用从前往后比较。
 ```js
 function insertSort(_arrayList) {
   for (let unorderedIndex = 1; unorderedIndex < _arrayList.length; unorderedIndex++) {
@@ -49,7 +49,7 @@ function insertSort(_arrayList) {
   return _arrayList;
 }
 ```
-从大到小排列我们这里采用从后往前比较。
+从大到小排列，我们这里采用从后往前比较。
 ```js
 function insertSortReverse(_arrayList) {
   for (let unorderedIndex = 1; unorderedIndex < _arrayList.length; unorderedIndex++) {
