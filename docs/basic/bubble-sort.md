@@ -46,7 +46,7 @@ function bubble(_arrayList, isPrematureEnd) {
   return _arrayList;
 }
 ```
-安从大到小的顺序排列的方法
+按从大到小的顺序排列的方法
 ```js
 /**
  * @description --reverse order
