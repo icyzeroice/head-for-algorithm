@@ -1,7 +1,5 @@
 # summary
 
-* [introduction](./README.md)
-
 * [基础算法](./basic/basic.md)
   * [比较排序](./basic/comparison-sort.md)
     * [冒泡排序](./basic/bubble-sort.md)
