@@ -3,6 +3,7 @@
 * [读我呀](./README.md)
 
 * [基础算法](./basic/basic.md)
+  * [桶排序](./basic/bucket-sort.md)
   * [比较排序](./basic/comparison-sort.md)
     * [冒泡排序](./basic/bubble-sort.md)
     * [插入排序](./basic/insert-sort.md)
