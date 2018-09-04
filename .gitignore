@@ -1,5 +1,7 @@
 #### Node
 .grunt
+node_modules/
+package-lock.json
 
 #### GitBook
 _book
