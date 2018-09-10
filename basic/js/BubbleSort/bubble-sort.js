@@ -1,7 +1,7 @@
 'use strict';
 
 Array.prototype.BubbleSort = function (isReverse = false) {
-  
+
   console.time('bubble sort');
   let isPrematureEnd = true;
 
