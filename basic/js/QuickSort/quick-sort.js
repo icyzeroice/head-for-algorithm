@@ -49,5 +49,3 @@ function quickSort(arr) {
 }
 
 module.exports = quickSort
-
-console.log(quickSort([2, 3, 1, 4, 5]))
