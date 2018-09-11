@@ -21,7 +21,7 @@ console.time('swop2');
 a2 ^= b2;
 b2 ^= a2;
 a2 ^= b2;
-console.timeEnd('swop2'); // about 0.007ms
+console.timeEnd('swop2'); // about 0.007ms, number only
 
 console.time('swop3');
 a3 += b3;
