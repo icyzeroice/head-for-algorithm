@@ -60,7 +60,3 @@ function reverseBubble(_arrayList, isPrematureEnd) {
   }
   return _arrayList;
 }
-
-// test bubble sorting
-console.log([23, 3, 7, 1, 2, 5].BubbleSort());
-console.log([23, 3, 4, 1, 2, 5].BubbleSort(true));
