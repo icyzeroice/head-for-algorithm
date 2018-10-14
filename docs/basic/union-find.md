@@ -49,7 +49,7 @@
 
 通过点的 `value` 找到其相连接的父节点，循环此操作，得到根节点 `value`。
 
-### 加权 quick-union 算法
+### weighted quick-union 算法（加权 QU）
 
 - ##### Why 加权
 
@@ -65,13 +65,13 @@
 同 quick-union 算法
 
 
-### 使用路径压缩的加权 quick-union 算法
+### weighted quick-union with path compression 算法（路径压缩的加权 QU）
 
 - ##### Union
 同上。
 
 - ##### Find
 
-在 Find 中添加一步，在检查节点的同时，将他们连接到根节点上去即可。
+在 Find 中添加一步，在检查节点的同时，将他们连接到父节点的父节点上去即可。
 
 > 时间复杂度：均摊接近 O(1)，但是最坏情况下也并非常数级别
