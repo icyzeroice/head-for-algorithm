@@ -1,0 +1,19 @@
+#+TITLE: Comparison Sort :: Shell Sort
+#+AUTHOR: 零度冰华
+#+EMAIL: ziv3@outlook.com
+#+DATE: 2018/11/04/8:00
+
+
+* 希尔排序
+
+** 递增序列
+
+*** 常用 *3×h+1* 的递增序列
+
+时间复杂度约为 
+
+#+BEGIN_EXPORT latex
+O(N^{3/2})
+#+END_EXPORT
+
+
