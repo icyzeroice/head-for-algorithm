@@ -17,3 +17,6 @@ _book
 
 #### JetBrains
 .idea/
+
+#### GCC/G++
+*.out
