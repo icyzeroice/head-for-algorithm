@@ -24,8 +24,9 @@ public:
   Node(Key k, Value v, int n);
   ~Node();
 
-  Node *_left;
-  Node *_right;
+  Node *left;
+  Node *right;
+  Node *parent;
 
   void setRed();
   void setBlack();
@@ -35,7 +36,9 @@ public:
   int getSize();
 
   Key getKey();
-  void setValue(Value val);
+
+  void setValue(Value);
+  Value getValue();
 
   void print();
 };
@@ -45,8 +48,9 @@ Node::Node(Key k, Value v, int n):
   _value(v),
   _size(n),
   _color(BLACK),
-  _left(nullptr),
-  _right(nullptr)
+  left(nullptr),
+  right(nullptr),
+  parent(nullptr)
 {
   
 };
@@ -89,6 +93,11 @@ Key Node::getKey()
 void Node::setValue(Value v)
 {
   _value = v;
+}
+
+Value Node::getValue()
+{
+  return _value;
 }
 
 void Node::print()

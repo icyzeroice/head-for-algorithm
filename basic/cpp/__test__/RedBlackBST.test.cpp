@@ -8,7 +8,7 @@ int main(int argc, char const *argv[])
   Key nodeKeys[] = { Key(5), Key(2), Key(0), Key(1), Key(9), Key(8) };
   Value nodeValues[] = { Value("Five"), Value("Two"), Value("Zero"), Value("One"), Value("Nine"), Value("Eight") };
 
-  RedBlackBST tree = RedBlackBST(nodeKeys, nodeValues);
+  RedBlackBST tree = RedBlackBST(nodeKeys, nodeValues, 6);
 
   tree.printDLR();
 
