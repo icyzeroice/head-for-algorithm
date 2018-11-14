@@ -18,7 +18,8 @@ int main(int argc, char const *argv[])
   tree.put(addonKey, addonVal);
   tree.printDLR();
 
-  // tree.del();
+  tree.del(addonKey);
+  tree.printDLR();
   
   return 0;
 }

@@ -18,6 +18,11 @@ private:
   
   void _transplant(Node *, Node *);
 
+  Node *_max(Node *);
+  Node *_min(Node *);
+
+  void _fixup(Node *);
+
   // for safe
   bool _isRed(Node *);
   int _getSize(Node *);
@@ -40,8 +45,8 @@ public:
   // Node rank();
   // Node floor();
   // Node ceiling();
-  // Node max();
-  // Node min();
+  Node *max();
+  Node *min();
   // Node range();
 
   // DLR, LDR, LRD
@@ -165,7 +170,7 @@ Node *RedBlackBST::put(Node *curr, Key k, Value v, Node *parent)
 /**
  *      o              n                n
  *    /  \\red          \            //   \
- *   L    n    ->  o     D     ->   o      D
+ *   L    n    =>  o     D     =>   o      D
  *  / \  / \      / \   |\        /  \    / \
  *      C   D    L   C           L    C
  *     / \ / \  |\   |\         / \  / \
@@ -180,7 +185,11 @@ Node *RedBlackBST::_rotateLeft(Node *old)
 
   neo->parent = old->parent;
   old->parent = neo;
-  old->right->parent = old;
+
+  if (old->right != nullptr)
+  {
+    old->right->parent = old;
+  }
 
   // change color
   neo->setBlack();
@@ -198,7 +207,7 @@ Node *RedBlackBST::_rotateLeft(Node *old)
 /**
  *      o          n
  *    // \       // \
- *   n      ->  A    o
+ *   n      =>  A    o
  * // \             / \
  * A   B           B
  *     
@@ -212,7 +221,11 @@ Node *RedBlackBST::_rotateRight(Node *old)
 
   neo->parent = old->parent;
   old->parent = neo;
-  old->left->parent = old;
+
+  if (old->left != nullptr)
+  {
+    old->left->parent = old;
+  }
 
   old->setBlack();
   neo->left->setBlack();
@@ -252,68 +265,230 @@ Value RedBlackBST::del(Key k)
 Value RedBlackBST::del(Key k, Node *curr)
 {
   int comparison = k.compare(curr->getKey());
+  Value _result;
 
   if (comparison > 0)
   {
-    return del(k, curr->right);
+    _result = del(k, curr->right);
   }
   else if (comparison < 0)
   {
-    return del(k, curr->left);
+    _result = del(k, curr->left);
   }
   else
   {
     return performDeletion(curr);
   }
+
+  // fix count size
+  curr->setSize(1 + _getSize(curr->left) + _getSize(curr->right));
+  return _result;
 }
 
 Value RedBlackBST::performDeletion(Node *z)
 {
   // 1. 先执行同 BST 同样的删除操作，但是这个过程中，你需要把要删除的节点颜色保留下来
+  Node *x;
   Node *y = z;
-  bool originColor = z->isRed();
+  bool isYOriginColorRed = y->isRed();
+  Value _result = z->getValue();
 
   /**
    *  如果要删除的节点 z
    *    - 没有左子树
    * 
-   *      z               left
-   *     / \              /   \
-   *       left    ->
+   *      z                    right <-(x)
+   *     / \                   /   \
+   *       right <-(x)    => 
    *        / \
    * 
    */
   if (z->left == nullptr)
   {
-    // _transplant()
+    x = z->right;
+    _transplant(z, z->right);
   }
 
-  return z->getValue();
+  /**
+   *    - 没有右子树
+   * 
+   *      z                left
+   *     / \              /   \
+   *  left       => 
+   * /   \
+   * 
+   * 
+   */
+  else if (z->right == nullptr)
+  {
+    x = z->left;
+    _transplant(z, z->left);
+  }
+
+  /**
+   * 我们默认以 *右子树最小值* 来替换当前要删除的值，所以这里需要将有两个子节点的情况变换成只有一个子节点后用 `_transplant`
+   */
+  else
+  {
+    // 因为 y 为左子树的最小值，所以 y 没有左子节点
+    y = _min(z->right);
+    x = y->right;
+
+    // 记录 y 颜色
+    isYOriginColorRed = y->isRed();
+
+    // 如果 y 就是 z 的右子节点
+    if (y->parent == z)
+    {
+      if (x != nullptr)
+      {
+        x->parent = y;
+      }
+    }
+    // 如果 y 是 z 右子结点的后代，而非直接的右子结点
+    else
+    {
+      // 删 y
+      _transplant(y, y->right);
+      y->right = z->right;
+      z->left->parent = y;
+    }
+
+    // 删 z
+    _transplant(z, y);
+    y->left = z->left;
+    if (y->left != nullptr)
+    {
+      y->left->parent;
+    }
+
+    // 保留原 z 的颜色
+    z->isRed() ? y->setRed() : y->setBlack();
+  }
+
+  // 如果 y 点原来是黑色，删除可能会改变红黑树性质
+  if (!isYOriginColorRed)
+  {
+    _fixup(x);
+  }
+
+  return _result;
 }
 
 void RedBlackBST::_transplant(Node *old, Node *neo)
 {
-  // 我们默认以右子树最小值来替换当前要删除的值
-  // 1. 替换根节点
+  /**
+   * 在这里 `old->parent` 只有 `old` 一个子节点
+   * 
+   * 1. 替换根节点
+   * 
+   */
   if (old == _root)
   {
     _root = neo;
   }
   
-  // 2. 
+  // 2. 替换父节点的左子节点
   else if (old->parent->left == old)
   {
     old->parent->left = neo;
   }
 
-  // 3. 
+  // 3. 替换父节点的右子节点
   else // if (parent->right == old)
   {
     old->parent->right = neo;
   }
+
+  // 连接父节点
+  if (neo != nullptr)
+  {
+    neo->parent = old->parent;
+  }
 }
 
+// 这里不知道为什么很多地方都引入 “额外一层黑色” 来理解，但是好像并没有更容易，
+// 黑黑和红黑两种情况，与黑和红两种情况又有什么区别？意义不明……
+void RedBlackBST::_fixup(Node *curr)
+{
+  Node *sibling;
 
+  while (curr != _root && !curr->isRed())
+  {
+    if (curr == curr->parent->left)
+    {
+      sibling = curr->parent->right;
+
+      if (sibling->isRed())
+      {
+        sibling->setBlack();
+        curr->parent->setRed();
+        _rotateLeft(curr->parent);
+        sibling = curr->parent->right;
+      }
+
+      if (!sibling->left->isRed() && !sibling->right->isRed())
+      {
+        sibling->setRed();
+        curr = curr->parent;
+      }
+
+      else
+      {
+        if (!sibling->right->isRed())
+        {
+          sibling->left->setBlack();
+          sibling->setRed();
+          _rotateRight(sibling);
+          sibling = curr->parent->right;
+        }
+
+        curr->parent->isRed() ? sibling->setRed() : sibling->setBlack();
+        curr->parent->setBlack();
+        sibling->right->setBlack();
+        _rotateLeft(sibling->parent);
+        sibling = _root;
+      }
+    }
+
+    else {
+      sibling = curr->parent->left;
+
+      if (sibling->isRed())
+      {
+        sibling->setBlack();
+        curr->parent->setRed();
+        _rotateRight(curr->parent);
+        sibling = curr->parent->left;
+      }
+
+      if (!sibling->right->isRed() && !sibling->left->isRed())
+      {
+        sibling->setRed();
+        curr = curr->parent;
+      }
+
+      else
+      {
+        if (!sibling->left->isRed())
+        {
+          sibling->right->setBlack();
+          sibling->setRed();
+          _rotateLeft(sibling);
+          sibling = curr->parent->left;
+        }
+
+        curr->parent->isRed() ? sibling->setRed() : sibling->setBlack();
+        curr->parent->setBlack();
+        sibling->left->setBlack();
+        _rotateRight(sibling->parent);
+        sibling = _root;
+      }
+    }
+  }
+
+  curr->setBlack();
+}
 
 
 
@@ -323,6 +498,46 @@ void RedBlackBST::_transplant(Node *old, Node *neo)
  * ----
  * 
  */
+Node *RedBlackBST::max()
+{
+  return _max(_root);
+}
+
+Node *RedBlackBST::min()
+{
+  return _min(_root);
+}
+
+Node *RedBlackBST::_min(Node *curr)
+{
+  if (curr == nullptr)
+  {
+    return nullptr;
+  }
+
+  while(curr->left != nullptr)
+  {
+    curr = curr->left;
+  }
+  
+  return curr;
+}
+
+Node *RedBlackBST::_max(Node *curr)
+{
+  if (curr == nullptr)
+  {
+    return nullptr;
+  }
+
+  while(curr->right != nullptr)
+  {
+    curr = curr->right;
+  }
+  
+  return curr;
+}
+
 void RedBlackBST::printDLR()
 {
   std::cout << "----- DLR -----" << std::endl;
