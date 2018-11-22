@@ -1,6 +1,7 @@
 #include<iostream>
 
-class Graph {
+// 无向图
+class UndirectedGraph {
 
 private:
 
@@ -35,24 +36,26 @@ public:
    * 
    * 
    */
-  Graph(int V);
-  Graph(char *c);
-  ~Graph();
+  UndirectedGraph(int V);
+  UndirectedGraph(char *c);
+  ~UndirectedGraph();
 
   int V();                                       // get the amount of vertexes/vertices
   int E();                                       // get the amount of edges
   void addEdge(int v, int w);                    // add edge `v-w`
   int *adj(int v);                               // vertexes next to `v`
     
-  static int degree(Graph G, int v);
-  static int maxDegree(Graph G);
-  static int minDegree(Graph G);
-  static int avgDegree(Graph G);
+  static int degree(UndirectedGraph G, int v);
+  static int maxDegree(UndirectedGraph G);
+  static int minDegree(UndirectedGraph G);
+  static int avgDegree(UndirectedGraph G);
+  // 间隔的度数
+  static int degreeBetween(UndirectedGraph G, int s, int v);
 
-  static bool isMarked(Graph G, int s, int v);   // `s` is connected with `v`
-  static int countUnion(Graph G, int s);         // amount of all the vertexes that are connected with `s`
+  static bool isMarked(UndirectedGraph G, int s, int v);   // `s` is connected with `v`
+  static int countUnion(UndirectedGraph G, int s);         // amount of all the vertexes that are connected with `s`
 
-  static int numOfSelfLoops(Graph G);
+  static int numOfSelfLoops(UndirectedGraph G);
 
   /**
    * # 图的查找
@@ -71,8 +74,8 @@ public:
    *   - 使用 FIFO
    * 
    */
-  static void dfs(Graph G, int s);
-  static void bfs(Graph G, int s);
+  static void dfs(UndirectedGraph G, int s);
+  static void bfs(UndirectedGraph G, int s);
 
   void print();                                  // print via Adjacency List style
 };
