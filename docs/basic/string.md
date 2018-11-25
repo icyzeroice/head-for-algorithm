@@ -77,3 +77,82 @@ elem 0 1 2 3 4    ->   0 1 2 3 4
 
 - 优势：大量重复键
 
+
+
+# Trie
+
+### 单词查找树
+
+### Ternay Search Tree（三向搜索树）
+
+
+# 子字符串查找
+
+### 暴力子字符串查找算法
+
+### KMP 字符串查找算法（Knuth-Morris-Pratt）
+
+模式指针的回退：
+
+  使用 *确定有限状态机*（deterministic finite state machine）
+
+```js
+// 例：
+pattern       A B A B A C
+
+target_text   A B A B A B A C
+
+
+ \            0 1 2 3 4 5
+  \pattern    A B A B A C
+dfa\
+
+ A            1 1 3 1 5 1
+ B            0 2 0 4 0 4
+ C            0 0 0 0 0 6
+
+
+
+// `i` 表示 当前匹配到 `target_text` 中的索引
+// `j` 表示 当前匹配到 `pattern` 中的索引
+// dfa[a][b] 得到的是下一个要用到的 `pattern` 中的索引，来和下一个 `target_text` 字母匹配
+// pseudo-code（伪代码）：
+dfa[target_text[i]][j].isEqualTo(target_text[i])
+  ? (j = dfa[target_text[i]][j])
+  : (j = dfa[target_text[i]][j])
+```
+
+那么如何构造一个 dfa 呢？
+
+```js
+// j 为 `pattern` 当前索引
+// 1. 匹配成功
+dfa[pattern[j]][j] = j + 1
+// 2. 匹配失败
+// 重新扫描 pattern，得到要回退到的索引位置
+X = dfa[pattern[j][X]]
+```
+
+```js
+// DFA generator
+// 初始化第一个匹配到的字符
+dfa[0][0] = 1
+
+for (let X = 0, j = 1; j < M; j++) {
+
+  // 1. 先将不匹配的情况复制到当前列
+  for (let c = 0; c < R; c++) {
+    dfa[c][j] = dfa[c][X]
+  }
+
+  // 2. 当前索引匹配的情况
+  dfa[pat.j][j] = j + 1;
+
+  // 3. 更新下一个 X
+  X = dfa[pat.j][X]
+}
+```
+
+### Boyer-Moore 字符串查找算法
+
+
