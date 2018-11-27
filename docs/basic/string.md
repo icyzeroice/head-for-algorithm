@@ -155,4 +155,29 @@ for (let X = 0, j = 1; j < M; j++) {
 
 ### Boyer-Moore 字符串查找算法
 
+首先用 `right[]` 来记录每个字符在 `pattern` 中最右的位置。
 
+1. 当前字符匹配失败，但在 `pattern` 中有这个字符
+
+```js
+pattern[j] !== target_text[i] && pattern.include(target_text[i])
+// `pattern` 相对于 `target_text` 向右移动 `right[target_text[i]] + pattern.length - j - 1`
+```
+
+2. 当前字符匹配实拍，且在 `pattern` 中没有这个字符
+
+```js
+pattern[j] !== target_text[i] && !pattern.include(target_text[i])
+// `pattern` 相对于 `target_text` 向右移动 `pattern.length`
+```
+
+3. 当前字符匹配成功
+
+```js
+// 从 `pattern` 的最右边相应位置开始，看看相应字符是否能全部匹配
+```
+
+
+### Rabin-Karp 指纹字符串查找算法
+
+> 基于散列的字符串查找算法。
