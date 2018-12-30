@@ -94,7 +94,7 @@ elem 0 1 2 3 4    ->   0 1 2 3 4
 
 模式指针的回退：
 
-  使用 *确定有限状态机*（deterministic finite state machine）
+  使用 *确定有限状态自动机*（deterministic finite automation）
 
 ```js
 // 例：
@@ -181,3 +181,45 @@ pattern[j] !== target_text[i] && !pattern.include(target_text[i])
 ### Rabin-Karp 指纹字符串查找算法
 
 > 基于散列的字符串查找算法。
+
+
+# 正则表达式
+
+### 局限
+
+- 无法使用正则表达式检查括号匹配是否完整
+
+- 无法检查字符串中的 A 和 B 数量是否一样多
+
+- 等等
+
+### 非确定有限状态机
+
+> NFA, nondeterministic finite automaton
+>
+> 正则表达式因为 *或操作* 的存在，不能像 KMP 那样 pattern 是确定的，会存在可能不出现的模式
+> > *Kleene 定理*： `正则表达式` <--充要-> `非确定有限状态机`
+
+
+### 状态转换
+
+- 匹配转换
+
+- ϵ-转换
+
+### 
+
+> 连接操作
+
+匹配转换
+
+> 括号
+
+使用栈
+
+> 闭包操作
+
+ϵ-转换
+
+> 或操作
+
