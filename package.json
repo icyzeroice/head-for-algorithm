@@ -1,36 +1,25 @@
 {
   "name": "head-for-algorithm",
-  "version": "0.0.1",
-  "description": "some notes",
+  "version": "0.1.0",
+  "description": "algorithms in practice",
   "main": "index.js",
   "directories": {
-    "jest": "jest",
     "doc": "docs"
   },
-  "dependencies": {
-    "eslint": "^4.12.0",
-    "gitbook-plugin-3-ba": "^0.9.0",
-    "gitbook-plugin-katex": "^1.1.4",
-    "gitbook-plugin-mermaid-gb3": "^2.1.0",
-    "gitbook-plugin-new-flowchart": "^0.1.1"
-  },
-  "devDependencies": {
-    "jest": "^23.5.0"
-  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/icyzeroice/head-for-algorithm.git"
   },
-  "keywords": [
-    "algorithm"
-  ],
   "author": "Ice Zero",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/icyzeroice/head-for-algorithm/issues"
   },
-  "homepage": "https://github.com/icyzeroice/head-for-algorithm#readme"
+  "homepage": "https://github.com/icyzeroice/head-for-algorithm#readme",
+  "devDependencies": {
+    "jest": "^26.0.1"
+  }
 }

@@ -1,22 +1,24 @@
 #### Node
-.grunt
 node_modules/
 package-lock.json
+yarn.lock
+.grunt
 
-#### GitBook
-_book
-*.epub
-*.mobi
-*.pdf
 
 #### vim / emacs
 *~
 
+
 #### vscode
 .vscode/
+
 
 #### JetBrains
 .idea/
 
+
 #### GCC/G++
 *.out
+
+
+# file ends here
