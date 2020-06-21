@@ -15,6 +15,7 @@ yarn.lock
 
 #### JetBrains
 .idea/
+cmake-build-*
 
 
 #### GCC/G++
