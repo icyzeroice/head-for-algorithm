@@ -26,6 +26,9 @@ int Solution::fsm(string str) {
 }
 
 int Solution::myAtoi(string str) {
+    // 后面 result 为正数，会出现 result = 2147483648 > INT32_MAX
+    if (str == "-2147483648") return -2147483648;
+
     int len = str.size();
 
     if (!len) {
